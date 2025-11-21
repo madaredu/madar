@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدعم الفني - منصة مدار</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* إضافة نفس الـCSS من الصفحة الرئيسية مع إضافة أنماط إضافية */
+        :root {
+            --primary-blue: #1a73e8;
+            --secondary-blue: #4285f4;
+            --accent-yellow: #fbbc05;
+            --light-bg: #f8f9fa;
+            --dark-text: #202124;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.8s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            transition: var(--transition);
+        }
+
+        .logo img:hover {
+            transform: rotate(5deg);
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 12px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            right: 0;
+            background-color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-login {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+        }
+
+        .btn-login:hover {
+            background-color: rgba(26, 115, 232, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-signup {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-signup:hover {
+            background-color: var(--secondary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,160L48,170.7C96,181,192,203,288,213.3C384,224,480,224,576,208C672,192,768,160,864,160C960,160,1056,192,1152,186.7C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: bottom;
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .support {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent-yellow);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .contact-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .contact-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(26, 115, 232, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover .contact-icon {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            transform: rotate(10deg);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+
+        .contact-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .contact-link {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .contact-link:hover {
+            background-color: var(--secondary-blue);
+            transform: translateY(-2px);
+        }
+
+        .faq-section {
+            background-color: var(--white);
+            padding: 60px 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            background-color: var(--light-bg);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: rgba(26, 115, 232, 0.05);
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .legal-content {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .legal-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .legal-content p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .legal-content ul {
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+
+        .legal-content li {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: var(--dark-text);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-yellow);
+            bottom: 0;
+            right: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-yellow);
+            padding-right: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links li {
+                margin: 5px 10px;
+            }
+
+            .auth-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+
+            .legal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="https://overwhelming-amber-hybjhttus6.edgeone.app/file_000000007e78720ea80916d3a5162075.png" alt="منصة مدار">
+                    <h1>منصة مدار</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="subjects.html">المواد الدراسية</a></li>
+                    <li><a href="videos.html">فيديوهات الشرح</a></li>
+                    <li><a href="features.html">المميزات</a></li>
+                    <li><a href="support.html" class="active">الدعم الفني</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <button class="btn btn-login" id="loginBtn">تسجيل الدخول</button>
+                    <button class="btn btn-signup" id="signupBtn">إنشاء حساب</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>الدعم الفني</h1>
+                <p>نحن هنا لمساعدتك في أي استفسار أو مشكلة تواجهك أثناء استخدام المنصة</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="support">
+        <div class="container">
+            <div class="section-title">
+                <h2>طرق التواصل معنا</h2>
+            </div>
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>الدعم عبر واتساب</h3>
+                    <p>تواصل معنا مباشرة عبر تطبيق واتساب للحصول على مساعدة فورية</p>
+                    <a href="https://wa.me/201129201242" class="contact-link">اتصل بنا الآن</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>البريد الإلكتروني</h3>
+                    <p>أرسل استفسارك عبر البريد الإلكتروني وسنرد عليك في أقرب وقت</p>
+                    <a href="mailto:madaredueg@gmail.com" class="contact-link">أرسل بريدًا</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>مركز المساعدة</h3>
+                    <p>استعرض الأسئلة الشائعة والدروس التعليمية لحل المشكلات الشائعة</p>
+                    <a href="#faq" class="contact-link">استعرض الأسئلة</a>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section" id="faq">
+                <div class="section-title">
+                    <h2>الأسئلة الشائعة</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>كيف يمكنني إنشاء حساب على المنصة؟</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>يمكنك إنشاء حساب جديد بالضغط على زر "إنشاء حساب" في أعلى الصفحة، ثم ملء البيانات المطلوبة وتأكيد البريد الإلكتروني.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>هل المنصة متاحة للطلاب في جميع المراحل الدراسية؟</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>حاليًا تركز منصة مدار على طلاب المرحلة الثانوية بجميع شعبها (علمي علوم، علمي رياضة، أدبي).</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>ما هي طرق الدفع المتاحة؟</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>نحن نقبل الدفع عبر البطاقات الإئتمانية، التحويلات البنكية، وبطاقات الهدايا الخاصة بالمنصة.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>كيف يمكنني استرجاع كلمة المرور؟</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>يمكنك استخدام خاصية "نسيت كلمة المرور" في صفحة تسجيل الدخول، وسنرسل لك رابط إعادة تعيين كلمة المرور على بريدك الإلكتروني.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terms & Conditions -->
+            <div class="legal-content">
+                <h3>الشروط والأحكام</h3>
+                <p>مرحبًا بك في منصة مدار التعليمية. يرجى قراءة الشروط والأحكام التالية بعناية قبل استخدام المنصة.</p>
+                
+                <h4>القبول بالشروط</h4>
+                <p>باستخدامك لمنصة مدار، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على أي جزء من هذه الشروط، فيرجى عدم استخدام المنصة.</p>
+                
+                <h4>استخدام المنصة</h4>
+                <ul>
+                    <li>يجب أن تكون على الأقل 13 عامًا لاستخدام المنصة.</li>
+                    <li>أنت مسؤول عن الحفاظ على سرية حسابك وكلمة المرور.</li>
+                    <li>توافق على استخدام المنصة للأغراض التعليمية فقط.</li>
+                    <li>يمنع نسخ أو توزيع المحتوى التعليمي بدون إذن مسبق.</li>
+                </ul>
+                
+                <h4>المدفوعات والاشتراكات</h4>
+                <p>جميع المدفوعات على المنصة نهائية وغير قابلة للاسترداد، إلا في حالات محددة ينص عليها في سياسة الاسترداد.</p>
+            </div>
+
+            <!-- Privacy Policy -->
+            <div class="legal-content">
+                <h3>سياسة الخصوصية</h3>
+                <p>نحن في منصة مدار نعمل على حماية خصوصيتك وبياناتك الشخصية. توضح سياسة الخصوصية هذه كيفية جمعنا واستخدامنا وحمايتنا لمعلوماتك.</p>
+                
+                <h4>المعلومات التي نجمعها</h4>
+                <ul>
+                    <li>المعلومات الشخصية (الاسم، البريد الإلكتروني، تاريخ الميلاد)</li>
+                    <li>معلومات الدفع (يتم معالجتها بشكل آمن عبر بوابات الدفع المعتمدة)</li>
+                    <li>بيانات الاستخدام (الصفحات التي تزورها، الوقت الذي تقضيه على المنصة)</li>
+                </ul>
+                
+                <h4>كيف نستخدم معلوماتك</h4>
+                <ul>
+                    <li>تقديم وتحسين خدماتنا التعليمية</li>
+                    <li>معالجة المدفوعات والاشتراكات</li>
+                    <li>إرسال تحديثات وإشعارات مهمة</li>
+                    <li>تحليل استخدام المنصة لتحسين تجربة المستخدم</li>
+                </ul>
+                
+                <h4>حماية معلوماتك</h4>
+                <p>نحن نستخدم تقنيات تشفير متقدمة لحماية بياناتك الشخصية ونقلها. كما نقوم بتخزين معلوماتك على خوادم آمنة مع إجراءات حماية صارمة.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>منصة مدار</h3>
+                    <p>منصة تعليمية متكاملة تهدف إلى تقديم أفضل الخدمات التعليمية لطلاب المرحلة الثانوية في جميع التخصصات.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="subjects.html">المواد الدراسية</a></li>
+                        <li><a href="videos.html">فيديوهات الشرح</a></li>
+                        <li><a href="features.html">المميزات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>الدعم الفني</h3>
+                    <ul class="footer-links">
+                        <li><a href="support.html">مركز المساعدة</a></li>
+                        <li><a href="support.html">اتصل بنا</a></li>
+                        <li><a href="support.html">الشروط والأحكام</a></li>
+                        <li><a href="support.html">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 منصة مدار التعليمية</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // تفعيل الأنيميشن للبطاقات
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.contact-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // تفعيل الأسئلة الشائعة
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // إغلاق جميع العناصر الأخرى
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // تبديل العنصر الحالي
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
