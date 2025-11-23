@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كورس الرياضيات - أ. أحمد محمد - منصة مدار</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1a73e8;
+            --secondary-blue: #4285f4;
+            --accent-yellow: #fbbc05;
+            --light-bg: #f8f9fa;
+            --dark-text: #202124;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            transition: var(--transition);
+        }
+
+        .logo img:hover {
+            transform: rotate(5deg);
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 12px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            right: 0;
+            background-color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-login {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+        }
+
+        .btn-login:hover {
+            background-color: rgba(26, 115, 232, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-signup {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-signup:hover {
+            background-color: var(--secondary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,160L48,170.7C96,181,192,203,288,213.3C384,224,480,224,576,208C672,192,768,160,864,160C960,160,1056,192,1152,186.7C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: bottom;
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .course-details {
+            padding: 80px 0;
+        }
+
+        .course-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .video-section {
+            margin-bottom: 40px;
+        }
+
+        .video-placeholder {
+            background-color: #333;
+            border-radius: 8px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-placeholder::after {
+            content: "فيديو الشرح";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 4px;
+        }
+
+        .video-info h2 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .video-info p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .teacher-info-sidebar {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .teacher-image-sidebar {
+            width: 120px;
+            height: 120px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: #999;
+            font-size: 2.5rem;
+        }
+
+        .teacher-details h3 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--dark-text);
+        }
+
+        .teacher-details p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .teacher-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .teacher-rating .stars {
+            color: var(--accent-yellow);
+            margin-left: 5px;
+        }
+
+        .teacher-rating .rating-value {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .course-pricing {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .course-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .btn-enroll {
+            background-color: var(--accent-yellow);
+            color: var(--dark-text);
+            width: 100%;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            margin-bottom: 15px;
+        }
+
+        .btn-enroll:hover {
+            background-color: #e6ac00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .course-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .course-features li:last-child {
+            border-bottom: none;
+        }
+
+        .course-features li i {
+            color: var(--primary-blue);
+            margin-left: 10px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 30px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--secondary-blue);
+            transform: translateX(-5px);
+        }
+
+        footer {
+            background-color: var(--dark-text);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-yellow);
+            bottom: 0;
+            right: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-yellow);
+            padding-right: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links li {
+                margin: 5px 10px;
+            }
+
+            .auth-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+
+            .course-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .teacher-info-sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo" onclick="window.location.reload(); return false;">
+    <img src="https://stormy-copper-pnqtxuzpc3.edgeone.app/Screenshot%202025-11-21%20150858.png" alt="منصة مدار">
+    <h1>منصة مدار</h1>
+</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="subjects.html">المواد الدراسية</a></li>
+                    <li><a href="videos.html">فيديوهات الشرح</a></li>
+                    <li><a href="features.html">المميزات</a></li>
+                    <li><a href="support.html">الدعم الفني</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>كورس الرياضيات المتقدم</h1>
+                <p>مع أفضل المعلمين المتخصصين في تدريس الرياضيات للمرحلة الثانوية</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Details -->
+    <section class="course-details">
+        <div class="container">
+            <a href="subject-teachers.html" class="back-link">
+                <i class="fas fa-arrow-right"></i>
+                <span style="margin-right: 8px;">العودة إلى المعلمين</span>
+            </a>
+            
+            <div class="course-layout">
+                <div class="course-content">
+                    <div class="video-section">
+                        <div class="video-placeholder">
+                            <!-- سيتم إضافة الفيديو لاحقًا -->
+                        </div>
+                        <div class="video-info">
+                            <h2>الدرس الأول: مقدمة في التفاضل والتكامل</h2>
+                            <p>في هذا الدرس سنتعرف على أساسيات التفاضل والتكامل وأهميته في الرياضيات والعلوم التطبيقية. سنغطي المفاهيم الأساسية والنظريات المهمة مع أمثلة تطبيقية.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="course-description">
+                        <h2>وصف الكورس</h2>
+                        <p>هذا الكورس الشامل يغطي منهج الرياضيات للمرحلة الثانوية بأسلوب مبسط وسهل الفهم. تم إعداد المحتوى بعناية لتغطية جميع النقاط المهمة في المنهج الدراسي.</p>
+                        
+                        <h3>ما ستتعلمه في هذا الكورس:</h3>
+                        <ul>
+                            <li>فهم أساسيات التفاضل والتكامل</li>
+                            <li>حل المسائل الرياضية المعقدة</li>
+                            <li>تطبيق النظريات الرياضية في مواقف حياتية</li>
+                            <li>التحضير الأمثل لامتحانات الثانوية العامة</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="teacher-info-sidebar">
+                    <div class="teacher-image-sidebar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="teacher-details">
+                        <h3 id="teacher-name">أ. أحمد محمد</h3>
+                        <p id="teacher-bio">مدرس رياضيات بخبرة 15 عاماً في تدريس المناهج الثانوية</p>
+                        <div class="teacher-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="rating-value">4.7</div>
+                        </div>
+                    </div>
+                    
+                    <div class="course-pricing">
+                        <div class="course-price">450 ج.م</div>
+                        <p>سعر الكورس شامل جميع الدروس</p>
+                    </div>
+                    
+                    <a href="https://paymob.xyz/Mh4f0yw1/" class="btn-enroll" target="_blank">
+                        <i class="fas fa-shopping-cart"></i>
+                        اشترك الآن
+                    </a>
+                    
+                    <ul class="course-features">
+                        <li><i class="fas fa-play-circle"></i> 30 درس فيديو</li>
+                        <li><i class="fas fa-file-alt"></i> 15 اختبار تقييمي</li>
+                        <li><i class="fas fa-clock"></i> 20 ساعة تعليمية</li>
+                        <li><i class="fas fa-infinity"></i> وصول دائم للمحتوى</li>
+                        <li><i class="fas fa-mobile-alt"></i> متاح على جميع الأجهزة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>منصة مدار</h3>
+                    <p>منصة تعليمية متكاملة تهدف إلى تقديم أفضل الخدمات التعليمية لطلاب المرحلة الثانوية في جميع التخصصات.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="subjects.html">المواد الدراسية</a></li>
+                        <li><a href="videos.html">فيديوهات الشرح</a></li>
+                        <li><a href="features.html">المميزات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>الدعم الفني</h3>
+                    <ul class="footer-links">
+                        <li><a href="support.html">مركز المساعدة</a></li>
+                        <li><a href="support.html">اتصل بنا</a></li>
+                        <li><a href="support.html">الشروط والأحكام</a></li>
+                        <li><a href="support.html">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 منصة مدار التعليمية</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // بيانات المعلمين
+        const teachersData = {
+            'ahmed': {
+                name: 'أ. أحمد محمد',
+                bio: 'مدرس رياضيات بخبرة 15 عاماً في تدريس المناهج الثانوية',
+                rating: 4.7,
+                subject: 'الرياضيات'
+            },
+            'sara': {
+                name: 'د. سارة عبدالله',
+                bio: 'دكتوراه في الرياضيات التطبيقية ومتخصصة في التفاضل والتكامل',
+                rating: 5.0,
+                subject: 'الرياضيات'
+            },
+            'khaled': {
+                name: 'أ. خالد إبراهيم',
+                bio: 'مدرس رياضيات ومؤلف لعدة كتب في الرياضيات للثانوية العامة',
+                rating: 4.2,
+                subject: 'الرياضيات'
+            }
+        };
+
+        // تحديث بيانات المعلم بناءً على المعلمة في الرابط
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const teacherId = urlParams.get('teacher');
+            
+            if (teacherId && teachersData[teacherId]) {
+                const teacher = teachersData[teacherId];
+                
+                // تحديث بيانات المعلم في الصفحة
+                document.getElementById('teacher-name').textContent = teacher.name;
+                document.getElementById('teacher-bio').textContent = teacher.bio;
+                
+                // تحديث عنوان الصفحة
+                document.querySelector('.page-header h1').textContent = `كورس ${teacher.subject} - ${teacher.name}`;
+                
+                // تحديث التقييم
+                const starsContainer = document.querySelector('.teacher-rating .stars');
+                starsContainer.innerHTML = '';
+                
+                const fullStars = Math.floor(teacher.rating);
+                const hasHalfStar = teacher.rating % 1 !== 0;
+                
+                for (let i = 0; i < fullStars; i++) {
+                    starsContainer.innerHTML += '<i class="fas fa-star"></i>';
+                }
+                
+                if (hasHalfStar) {
+                    starsContainer.innerHTML += '<i class="fas fa-star-half-alt"></i>';
+                }
+                
+                const emptyStars = 5 - Math.ceil(teacher.rating);
+                for (let i = 0; i < emptyStars; i++) {
+                    starsContainer.innerHTML += '<i class="far fa-star"></i>';
+                }
+                
+                document.querySelector('.rating-value').textContent = teacher.rating;
+            }
+        });
+    </script>
+</body>
+</html>

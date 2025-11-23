@@ -53,26 +53,47 @@
             padding: 15px 0;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+       /* أنماط الشعار الجديد */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 8px;
+}
 
-        .logo img {
-            height: 40px;
-            transition: var(--transition);
-        }
+.logo:hover {
+    transform: translateY(-2px);
+    background: rgba(26, 115, 232, 0.05);
+}
 
-        .logo img:hover {
-            transform: rotate(5deg);
-        }
+.logo:active {
+    transform: translateY(0);
+}
 
-        .logo h1 {
-            font-size: 1.5rem;
-            color: var(--primary-blue);
-            font-weight: 700;
-        }
+.logo img {
+    height: 40px;
+    transition: var(--transition);
+}
+
+.logo:hover img {
+    transform: rotate(5deg);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    font-weight: 700;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.logo:hover h1 {
+    color: var(--secondary-blue);
+}
 
         .nav-links {
             display: flex;
@@ -424,17 +445,160 @@
                 font-size: 1rem;
             }
         }
+
+        /* أنماط النافذة المنبثقة (Modal) */
+        .modal {
+            display: none; /* مخفي افتراضياً */
+            position: fixed;
+            z-index: 1050; /* تأكد من أنه فوق كل شيء */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7); /* خلفية معتمة */
+            animation: fadeIn 0.3s ease-out;
+            padding-top: 60px; /* لترك مسافة من الأعلى */
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto; /* توسيط رأسي وأفقي بسيط */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            animation: slideInTop 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* انيميشن راقي */
+            text-align: right; /* محاذاة النص لليمين للغة العربية */
+        }
+
+        .modal-close {
+            color: #aaa;
+            float: left; /* ليكون في الزاوية اليسرى (بسبب dir="rtl") */
+            font-size: 28px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: var(--primary-blue);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* أنماط نموذج الدخول/التسجيل */
+        .auth-form h3 {
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        .auth-form input[type="email"],
+        .auth-form input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+            text-align: right;
+        }
+
+        .auth-form input:focus {
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 5px rgba(66, 133, 244, 0.5);
+            outline: none;
+        }
+
+        .auth-form button.btn-submit {
+            width: 100%;
+            background-color: var(--accent-yellow);
+            color: var(--dark-text);
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .auth-form button.btn-submit:hover {
+            background-color: #e6ac00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .switch-auth {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .switch-auth a {
+            color: var(--primary-blue);
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .switch-auth a:hover {
+            text-decoration: underline;
+            color: var(--secondary-blue);
+        }
+
+        /* انيميشن النافذة المنبثقة */
+        @keyframes fadeIn {
+            from { opacity: 0 }
+            to { opacity: 1 }
+        }
+
+        @keyframes slideInTop {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
     </style>
+    <script type="module">
+        // استيراد الدوال اللازمة من حزم Firebase SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-analytics.js";
+      
+        // تهيئة تطبيق الويب الخاص بك
+        const firebaseConfig = {
+          apiKey: "AIzaSyAlO9Seia2wv44GUJcg1Qhp8ak1jO_gDB4",
+          authDomain: "madar-eg.firebaseapp.com",
+          projectId: "madar-eg",
+          storageBucket: "madar-eg.firebasestorage.app",
+          messagingSenderId: "940984632020",
+          appId: "1:940984632020:web:8dd2e3b830310a3925f141",
+          measurementId: "G-0P5S2QGT29"
+        };
+      
+        // تهيئة Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <nav class="navbar">
-                <div class="logo">
-                    <img src="https://overwhelming-amber-hybjhttus6.edgeone.app/file_000000007e78720ea80916d3a5162075.png" alt="منصة مدار">
-                    <h1>منصة مدار</h1>
-                </div>
+                <a href="index.html" class="logo" onclick="window.location.reload(); return false;">
+    <img src="https://stormy-copper-pnqtxuzpc3.edgeone.app/Screenshot%202025-11-21%20150858.png" alt="منصة مدار">
+    <h1>منصة مدار</h1>
+</a>
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">الرئيسية</a></li>
                     <li><a href="subjects.html">المواد الدراسية</a></li>
@@ -450,7 +614,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
@@ -461,7 +624,6 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
     <section class="stats">
         <div class="container">
             <div class="stats-grid">
@@ -485,7 +647,6 @@
         </div>
     </section>
 
-    <!-- Quick Links Section -->
     <section class="quick-links">
         <div class="container">
             <div class="section-title">
@@ -524,7 +685,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -557,6 +717,33 @@
         </div>
     </footer>
 
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            
+            <div id="loginForm" class="auth-form">
+                <h3>تسجيل الدخول إلى منصة مدار</h3>
+                <input type="email" placeholder="البريد الإلكتروني" required>
+                <input type="password" placeholder="كلمة المرور" required>
+                <button class="btn-submit">تسجيل الدخول</button>
+                <div class="switch-auth">
+                    ليس لديك حساب؟ <a href="#" onclick="switchForm('signup'); return false;">إنشاء حساب جديد</a>
+                </div>
+            </div>
+
+            <div id="signupForm" class="auth-form" style="display: none;">
+                <h3>إنشاء حساب جديد</h3>
+                <input type="email" placeholder="البريد الإلكتروني" required>
+                <input type="password" placeholder="كلمة المرور (6 أحرف على الأقل)" required>
+                <input type="password" placeholder="تأكيد كلمة المرور" required>
+                <button class="btn-submit">إنشاء حساب</button>
+                <div class="switch-auth">
+                    لديك حساب بالفعل؟ <a href="#" onclick="switchForm('login'); return false;">تسجيل الدخول</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // إضافة تأثير التمرير للبطاقات
         document.addEventListener('DOMContentLoaded', function() {
@@ -578,6 +765,48 @@
                 observer.observe(card);
             });
         });
+
+        // كود النافذة المنبثقة
+        const modal = document.getElementById("authModal");
+        const loginBtn = document.getElementById("loginBtn");
+        const signupBtn = document.getElementById("signupBtn");
+        const closeBtn = document.querySelector(".modal-close");
+        const loginForm = document.getElementById("loginForm");
+        const signupForm = document.getElementById("signupForm");
+
+        // وظيفة للتبديل بين نموذج الدخول والتسجيل
+        window.switchForm = function(formType) {
+            if (formType === 'signup') {
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+            } else {
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+            }
+        }
+
+        // عند النقر على زر تسجيل الدخول أو إنشاء حساب، افتح النافذة
+        loginBtn.onclick = function() {
+            switchForm('login');
+            modal.style.display = "block";
+        }
+
+        signupBtn.onclick = function() {
+            switchForm('signup');
+            modal.style.display = "block";
+        }
+
+        // عند النقر على (x)، أغلق النافذة
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // عند النقر خارج النافذة، أغلقها
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>

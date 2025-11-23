@@ -54,27 +54,47 @@
             padding: 15px 0;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+     /* أنماط الشعار الجديد */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 8px;
+}
 
-        .logo img {
-            height: 40px;
-            transition: var(--transition);
-        }
+.logo:hover {
+    transform: translateY(-2px);
+    background: rgba(26, 115, 232, 0.05);
+}
 
-        .logo img:hover {
-            transform: rotate(5deg);
-        }
+.logo:active {
+    transform: translateY(0);
+}
 
-        .logo h1 {
-            font-size: 1.5rem;
-            color: var(--primary-blue);
-            font-weight: 700;
-        }
+.logo img {
+    height: 40px;
+    transition: var(--transition);
+}
 
+.logo:hover img {
+    transform: rotate(5deg);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    font-weight: 700;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.logo:hover h1 {
+    color: var(--secondary-blue);
+}
         .nav-links {
             display: flex;
             list-style: none;
@@ -385,10 +405,10 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <div class="logo">
-                    <img src="https://overwhelming-amber-hybjhttus6.edgeone.app/file_000000007e78720ea80916d3a5162075.png" alt="منصة مدار">
-                    <h1>منصة مدار</h1>
-                </div>
+                <a href="index.html" class="logo" onclick="window.location.reload(); return false;">
+    <img src="https://stormy-copper-pnqtxuzpc3.edgeone.app/Screenshot%202025-11-21%20150858.png" alt="منصة مدار">
+    <h1>منصة مدار</h1>
+</a>
                 <ul class="nav-links">
                     <li><a href="index.html">الرئيسية</a></li>
                     <li><a href="subjects.html">المواد الدراسية</a></li>
@@ -397,8 +417,7 @@
                     <li><a href="support.html">الدعم الفني</a></li>
                 </ul>
                 <div class="auth-buttons">
-                    <button class="btn btn-login" id="loginBtn">تسجيل الدخول</button>
-                    <button class="btn btn-signup" id="signupBtn">إنشاء حساب</button>
+                    
                 </div>
             </nav>
         </div>

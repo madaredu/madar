@@ -6,7 +6,6 @@
     <title>المواد الدراسية - منصة مدار</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* إضافة نفس الـCSS من الصفحة الرئيسية مع إضافة أنماط إضافية */
         :root {
             --primary-blue: #1a73e8;
             --secondary-blue: #4285f4;
@@ -54,26 +53,47 @@
             padding: 15px 0;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        /* أنماط الشعار الجديد */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 8px;
+}
 
-        .logo img {
-            height: 40px;
-            transition: var(--transition);
-        }
+.logo:hover {
+    transform: translateY(-2px);
+    background: rgba(26, 115, 232, 0.05);
+}
 
-        .logo img:hover {
-            transform: rotate(5deg);
-        }
+.logo:active {
+    transform: translateY(0);
+}
 
-        .logo h1 {
-            font-size: 1.5rem;
-            color: var(--primary-blue);
-            font-weight: 700;
-        }
+.logo img {
+    height: 40px;
+    transition: var(--transition);
+}
+
+.logo:hover img {
+    transform: rotate(5deg);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    font-weight: 700;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.logo:hover h1 {
+    color: var(--secondary-blue);
+}
 
         .nav-links {
             display: flex;
@@ -304,6 +324,26 @@
         .subject-info p {
             color: #666;
             font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .btn-teacher {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .btn-teacher:hover {
+            background-color: var(--secondary-blue);
+            transform: translateY(-2px);
         }
 
         footer {
@@ -428,10 +468,10 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <div class="logo">
-                    <img src="https://overwhelming-amber-hybjhttus6.edgeone.app/file_000000007e78720ea80916d3a5162075.png" alt="منصة مدار">
-                    <h1>منصة مدار</h1>
-                </div>
+                <a href="index.html" class="logo" onclick="window.location.reload(); return false;">
+    <img src="https://stormy-copper-pnqtxuzpc3.edgeone.app/Screenshot%202025-11-21%20150858.png" alt="منصة مدار">
+    <h1>منصة مدار</h1>
+</a>
                 <ul class="nav-links">
                     <li><a href="index.html">الرئيسية</a></li>
                     <li><a href="subjects.html" class="active">المواد الدراسية</a></li>
@@ -440,8 +480,7 @@
                     <li><a href="support.html">الدعم الفني</a></li>
                 </ul>
                 <div class="auth-buttons">
-                    <button class="btn btn-login" id="loginBtn">تسجيل الدخول</button>
-                    <button class="btn btn-signup" id="signupBtn">إنشاء حساب</button>
+                    
                 </div>
             </nav>
         </div>
@@ -525,19 +564,22 @@
                 { name: "اللغة العربية", icon: "📖", description: "قواعد النحو والصرف والأدب للصف الأول" },
                 { name: "الرياضيات", icon: "🧮", description: "الجبر والهندسة والإحصاء للصف الأول" },
                 { name: "الفيزياء", icon: "🔬", description: "الميكانيكا والحركة للصف الأول" },
-                { name: "الكيمياء", icon: "🧪", description: "المادة والذرة والتفاعلات للصف الأول" }
+                { name: "الكيمياء", icon: "🧪", description: "المادة والذرة والتفاعلات للصف الأول" },
+                { name: "الإنجليزية", icon: "🔤", description: "قواعد اللغة الإنجليزية للصف الأول" }
             ],
             11: [
                 { name: "اللغة العربية", icon: "📖", description: "النصوص الأدبية والبلاغة للصف الثاني" },
                 { name: "الرياضيات", icon: "🧮", description: "التفاضل والتكامل للصف الثاني" },
                 { name: "الفيزياء", icon: "🔬", description: "الكهرباء والمغناطيسية للصف الثاني" },
-                { name: "الكيمياء", icon: "🧪", description: "الكيمياء العضوية للصف الثاني" }
+                { name: "الكيمياء", icon: "🧪", description: "الكيمياء العضوية للصف الثاني" },
+                { name: "الإنجليزية", icon: "🔤", description: "قواعد اللغة الإنجليزية للصف الثاني" }
             ],
             12: [
                 { name: "اللغة العربية", icon: "📖", description: "الأدب والنقد والبلاغة للصف الثالث" },
                 { name: "الرياضيات", icon: "🧮", description: "الجبر المتقدم والإحصاء للصف الثالث" },
                 { name: "الفيزياء", icon: "🔬", description: "الفيزياء الحديثة للصف الثالث" },
-                { name: "الكيمياء", icon: "🧪", description: "الكيمياء التحليلية للصف الثالث" }
+                { name: "الكيمياء", icon: "🧪", description: "الكيمياء التحليلية للصف الثالث" },
+                { name: "الإنجليزية", icon: "🔤", description: "قواعد اللغة الإنجليزية للصف الثالث" }
             ]
         };
 
@@ -572,6 +614,7 @@
                     <div class="subject-info">
                         <h3>${subject.name}</h3>
                         <p>${subject.description}</p>
+                        <a href="subject-teachers.html?subject=${encodeURIComponent(subject.name)}" class="btn-teacher">عرض المعلمين</a>
                     </div>
                 `;
                 subjectsGrid.appendChild(subjectCard);
@@ -588,6 +631,19 @@
         // تهيئة المواد عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', () => {
             displaySubjects('all');
+            
+            // تفعيل الأنيميشن للعناصر عند التمرير
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.subject-card').forEach(element => {
+                observer.observe(element);
+            });
         });
     </script>
 </body>

@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الدعم الفني - منصة مدار</title>
+    <title>معلمو الرياضيات - منصة مدار</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* إضافة نفس الـCSS من الصفحة الرئيسية مع إضافة أنماط إضافية */
         :root {
             --primary-blue: #1a73e8;
             --secondary-blue: #4285f4;
@@ -44,7 +43,6 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            animation: slideDown 0.8s ease;
         }
 
         .navbar {
@@ -134,14 +132,6 @@
             color: var(--primary-blue);
         }
 
-        .nav-links a.active {
-            color: var(--primary-blue);
-        }
-
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
         .auth-buttons {
             display: flex;
             gap: 10px;
@@ -217,7 +207,7 @@
             animation: fadeInUp 1s ease 0.2s both;
         }
 
-        .support {
+        .teachers {
             padding: 80px 0;
         }
 
@@ -245,152 +235,119 @@
             transform: translateX(-50%);
         }
 
-        .contact-methods {
+        .teachers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
-            margin-bottom: 60px;
         }
 
-        .contact-card {
+        .teacher-card {
             background-color: var(--white);
-            padding: 30px;
             border-radius: 8px;
+            overflow: hidden;
             box-shadow: var(--shadow);
-            text-align: center;
             transition: var(--transition);
+            cursor: pointer;
+            position: relative;
             transform: translateY(20px);
             opacity: 0;
         }
 
-        .contact-card.visible {
+        .teacher-card.visible {
             transform: translateY(0);
             opacity: 1;
         }
 
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        .teacher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .contact-icon {
-            width: 70px;
-            height: 70px;
-            background-color: rgba(26, 115, 232, 0.1);
-            border-radius: 50%;
+        .teacher-image {
+            height: 250px;
+            background-color: #e0e0e0;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            color: var(--primary-blue);
-            font-size: 1.8rem;
-            transition: var(--transition);
+            color: #999;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .contact-card:hover .contact-icon {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            transform: rotate(10deg);
+        .teacher-image::after {
+            content: "صورة المعلم";
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
         }
 
-        .contact-card h3 {
-            margin-bottom: 15px;
+        .teacher-info {
+            padding: 20px;
+        }
+
+        .teacher-info h3 {
+            margin-bottom: 10px;
             color: var(--dark-text);
         }
 
-        .contact-card p {
+        .teacher-info p {
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .contact-link {
-            display: inline-block;
+        .teacher-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .teacher-rating .stars {
+            color: var(--accent-yellow);
+            margin-left: 5px;
+        }
+
+        .teacher-rating .rating-value {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .btn-teacher {
             background-color: var(--primary-blue);
             color: var(--white);
-            padding: 10px 20px;
+            width: 100%;
+            padding: 10px;
             border-radius: 4px;
+            text-align: center;
+            display: block;
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
         }
 
-        .contact-link:hover {
+        .btn-teacher:hover {
             background-color: var(--secondary-blue);
             transform: translateY(-2px);
         }
 
-        .faq-section {
-            background-color: var(--white);
-            padding: 60px 0;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-        }
-
-        .faq-item {
-            margin-bottom: 20px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            padding: 20px;
-            background-color: var(--light-bg);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
+        .back-link {
+            display: inline-flex;
             align-items: center;
+            margin-bottom: 30px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
             transition: var(--transition);
         }
 
-        .faq-question:hover {
-            background-color: rgba(26, 115, 232, 0.05);
-        }
-
-        .faq-question h3 {
-            margin: 0;
-            font-size: 1.1rem;
-        }
-
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            padding: 20px;
-            max-height: 500px;
-        }
-
-        .legal-content {
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            margin-bottom: 40px;
-        }
-
-        .legal-content h3 {
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .legal-content p {
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
-
-        .legal-content ul {
-            margin-right: 20px;
-            margin-bottom: 20px;
-        }
-
-        .legal-content li {
-            margin-bottom: 10px;
+        .back-link:hover {
+            color: var(--secondary-blue);
+            transform: translateX(-5px);
         }
 
         footer {
@@ -462,17 +419,6 @@
             }
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -501,10 +447,6 @@
             .page-header p {
                 font-size: 1rem;
             }
-
-            .legal-content {
-                padding: 20px;
-            }
         }
     </style>
 </head>
@@ -522,7 +464,7 @@
                     <li><a href="subjects.html">المواد الدراسية</a></li>
                     <li><a href="videos.html">فيديوهات الشرح</a></li>
                     <li><a href="features.html">المميزات</a></li>
-                    <li><a href="support.html" class="active">الدعم الفني</a></li>
+                    <li><a href="support.html">الدعم الفني</a></li>
                 </ul>
                 <div class="auth-buttons">
                     
@@ -535,132 +477,87 @@
     <section class="page-header">
         <div class="container">
             <div class="page-header-content">
-                <h1>الدعم الفني</h1>
-                <p>نحن هنا لمساعدتك في أي استفسار أو مشكلة تواجهك أثناء استخدام المنصة</p>
+                <h1>معلمو الرياضيات</h1>
+                <p>اختر المعلم المناسب لك من بين أفضل المعلمين المتخصصين في مادة الرياضيات</p>
             </div>
         </div>
     </section>
 
-    <!-- Support Section -->
-    <section class="support">
+    <!-- Teachers Section -->
+    <section class="teachers">
         <div class="container">
+            <a href="subjects.html" class="back-link">
+                <i class="fas fa-arrow-right"></i>
+                <span style="margin-right: 8px;">العودة إلى المواد الدراسية</span>
+            </a>
+            
             <div class="section-title">
-                <h2>طرق التواصل معنا</h2>
+                <h2>المعلمون المميزون</h2>
             </div>
-            <div class="contact-methods">
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fab fa-whatsapp"></i>
+            
+            <div class="teachers-grid">
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <i class="fas fa-user"></i>
                     </div>
-                    <h3>الدعم عبر واتساب</h3>
-                    <p>تواصل معنا مباشرة عبر تطبيق واتساب للحصول على مساعدة فورية</p>
-                    <a href="https://wa.me/201129201242" class="contact-link">اتصل بنا الآن</a>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3>البريد الإلكتروني</h3>
-                    <p>أرسل استفسارك عبر البريد الإلكتروني وسنرد عليك في أقرب وقت</p>
-                    <a href="mailto:madaredueg@gmail.com" class="contact-link">أرسل بريدًا</a>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>مركز المساعدة</h3>
-                    <p>استعرض الأسئلة الشائعة والدروس التعليمية لحل المشكلات الشائعة</p>
-                    <a href="#faq" class="contact-link">استعرض الأسئلة</a>
-                </div>
-            </div>
-
-            <!-- FAQ Section -->
-            <div class="faq-section" id="faq">
-                <div class="section-title">
-                    <h2>الأسئلة الشائعة</h2>
-                </div>
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>كيف يمكنني إنشاء حساب على المنصة؟</h3>
-                            <i class="fas fa-chevron-down"></i>
+                    <div class="teacher-info">
+                        <h3>أ. أحمد محمد</h3>
+                        <p>مدرس رياضيات بخبرة 15 عاماً في تدريس المناهج الثانوية</p>
+                        <div class="teacher-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="rating-value">4.7</div>
                         </div>
-                        <div class="faq-answer">
-                            <p>يمكنك إنشاء حساب جديد بالضغط على زر "إنشاء حساب" في أعلى الصفحة، ثم ملء البيانات المطلوبة وتأكيد البريد الإلكتروني.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>هل المنصة متاحة للطلاب في جميع المراحل الدراسية؟</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>حاليًا تركز منصة مدار على طلاب المرحلة الثانوية بجميع شعبها (علمي علوم، علمي رياضة، أدبي).</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>ما هي طرق الدفع المتاحة؟</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>نحن نقبل الدفع عبر البطاقات الإئتمانية، التحويلات البنكية، وبطاقات الهدايا الخاصة بالمنصة.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>كيف يمكنني استرجاع كلمة المرور؟</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>يمكنك استخدام خاصية "نسيت كلمة المرور" في صفحة تسجيل الدخول، وسنرسل لك رابط إعادة تعيين كلمة المرور على بريدك الإلكتروني.</p>
-                        </div>
+                        <a href="teacher-course.html?teacher=ahmed" class="btn-teacher">عرض الكورس</a>
                     </div>
                 </div>
-            </div>
-
-            <!-- Terms & Conditions -->
-            <div class="legal-content">
-                <h3>الشروط والأحكام</h3>
-                <p>مرحبًا بك في منصة مدار التعليمية. يرجى قراءة الشروط والأحكام التالية بعناية قبل استخدام المنصة.</p>
                 
-                <h4>القبول بالشروط</h4>
-                <p>باستخدامك لمنصة مدار، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على أي جزء من هذه الشروط، فيرجى عدم استخدام المنصة.</p>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="teacher-info">
+                        <h3>د. سارة عبدالله</h3>
+                        <p>دكتوراه في الرياضيات التطبيقية ومتخصصة في التفاضل والتكامل</p>
+                        <div class="teacher-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="rating-value">5.0</div>
+                        </div>
+                        <a href="teacher-course.html?teacher=sara" class="btn-teacher">عرض الكورس</a>
+                    </div>
+                </div>
                 
-                <h4>استخدام المنصة</h4>
-                <ul>
-                    <li>يجب أن تكون على الأقل 13 عامًا لاستخدام المنصة.</li>
-                    <li>أنت مسؤول عن الحفاظ على سرية حسابك وكلمة المرور.</li>
-                    <li>توافق على استخدام المنصة للأغراض التعليمية فقط.</li>
-                    <li>يمنع نسخ أو توزيع المحتوى التعليمي بدون إذن مسبق.</li>
-                </ul>
-                
-                <h4>المدفوعات والاشتراكات</h4>
-                <p>جميع المدفوعات على المنصة نهائية وغير قابلة للاسترداد، إلا في حالات محددة ينص عليها في سياسة الاسترداد.</p>
-            </div>
-
-            <!-- Privacy Policy -->
-            <div class="legal-content">
-                <h3>سياسة الخصوصية</h3>
-                <p>نحن في منصة مدار نعمل على حماية خصوصيتك وبياناتك الشخصية. توضح سياسة الخصوصية هذه كيفية جمعنا واستخدامنا وحمايتنا لمعلوماتك.</p>
-                
-                <h4>المعلومات التي نجمعها</h4>
-                <ul>
-                    <li>المعلومات الشخصية (الاسم، البريد الإلكتروني، تاريخ الميلاد)</li>
-                    <li>معلومات الدفع (يتم معالجتها بشكل آمن عبر بوابات الدفع المعتمدة)</li>
-                    <li>بيانات الاستخدام (الصفحات التي تزورها، الوقت الذي تقضيه على المنصة)</li>
-                </ul>
-                
-                <h4>كيف نستخدم معلوماتك</h4>
-                <ul>
-                    <li>تقديم وتحسين خدماتنا التعليمية</li>
-                    <li>معالجة المدفوعات والاشتراكات</li>
-                    <li>إرسال تحديثات وإشعارات مهمة</li>
-                    <li>تحليل استخدام المنصة لتحسين تجربة المستخدم</li>
-                </ul>
-                
-                <h4>حماية معلوماتك</h4>
-                <p>نحن نستخدم تقنيات تشفير متقدمة لحماية بياناتك الشخصية ونقلها. كما نقوم بتخزين معلوماتك على خوادم آمنة مع إجراءات حماية صارمة.</p>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="teacher-info">
+                        <h3>أ. خالد إبراهيم</h3>
+                        <p>مدرس رياضيات ومؤلف لعدة كتب في الرياضيات للثانوية العامة</p>
+                        <div class="teacher-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div class="rating-value">4.2</div>
+                        </div>
+                        <a href="teacher-course.html?teacher=khaled" class="btn-teacher">عرض الكورس</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -701,7 +598,7 @@
     <script>
         // تفعيل الأنيميشن للبطاقات
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.contact-card');
+            const cards = document.querySelectorAll('.teacher-card');
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -714,25 +611,15 @@
             cards.forEach(card => {
                 observer.observe(card);
             });
-
-            // تفعيل الأسئلة الشائعة
-            const faqItems = document.querySelectorAll('.faq-item');
             
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                
-                question.addEventListener('click', () => {
-                    // إغلاق جميع العناصر الأخرى
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
-                    
-                    // تبديل العنصر الحالي
-                    item.classList.toggle('active');
-                });
-            });
+            // الحصول على اسم المادة من الرابط
+            const urlParams = new URLSearchParams(window.location.search);
+            const subject = urlParams.get('subject');
+            
+            if (subject) {
+                document.querySelector('.page-header h1').textContent = `معلمو ${subject}`;
+                document.querySelector('.page-header p').textContent = `اختر المعلم المناسب لك من بين أفضل المعلمين المتخصصين في مادة ${subject}`;
+            }
         });
     </script>
 </body>

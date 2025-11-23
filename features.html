@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المميزات - منصة مدار</title>
+    <title>مميزات منصة مدار - المنصة التعليمية الرائدة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* إضافة نفس الـCSS من الصفحة الرئيسية مع إضافة أنماط إضافية */
         :root {
             --primary-blue: #1a73e8;
             --secondary-blue: #4285f4;
@@ -16,6 +15,7 @@
             --white: #ffffff;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
         }
 
         * {
@@ -29,6 +29,7 @@
             background-color: var(--light-bg);
             color: var(--dark-text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -54,27 +55,47 @@
             padding: 15px 0;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+      /* أنماط الشعار الجديد */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 8px;
+}
 
-        .logo img {
-            height: 40px;
-            transition: var(--transition);
-        }
+.logo:hover {
+    transform: translateY(-2px);
+    background: rgba(26, 115, 232, 0.05);
+}
 
-        .logo img:hover {
-            transform: rotate(5deg);
-        }
+.logo:active {
+    transform: translateY(0);
+}
 
-        .logo h1 {
-            font-size: 1.5rem;
-            color: var(--primary-blue);
-            font-weight: 700;
-        }
+.logo img {
+    height: 40px;
+    transition: var(--transition);
+}
 
+.logo:hover img {
+    transform: rotate(5deg);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    font-weight: 700;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.logo:hover h1 {
+    color: var(--secondary-blue);
+}
         .nav-links {
             display: flex;
             list-style: none;
@@ -158,9 +179,9 @@
         }
 
         .page-header {
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            background: var(--gradient);
             color: var(--white);
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -181,62 +202,90 @@
         .page-header-content {
             position: relative;
             z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .page-header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
             animation: fadeInUp 1s ease;
         }
 
         .page-header p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 1.3rem;
+            margin-bottom: 30px;
             animation: fadeInUp 1s ease 0.2s both;
         }
 
-        .features {
-            padding: 80px 0;
+        .btn-hero {
+            background-color: var(--accent-yellow);
+            color: var(--dark-text);
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn-hero:hover {
+            background-color: #e6ac00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             position: relative;
         }
 
         .section-title h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--primary-blue);
             display: inline-block;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
 
         .section-title h2::after {
             content: "";
             position: absolute;
-            width: 70px;
-            height: 3px;
+            width: 100px;
+            height: 4px;
             background-color: var(--accent-yellow);
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        /* Features Grid */
+        .features {
+            padding: 100px 0;
         }
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 40px;
         }
 
         .feature-card {
             background-color: var(--white);
-            padding: 30px;
-            border-radius: 8px;
+            padding: 40px 30px;
+            border-radius: 12px;
             box-shadow: var(--shadow);
             text-align: center;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
             transform: translateY(20px);
             opacity: 0;
         }
@@ -246,84 +295,288 @@
             opacity: 1;
         }
 
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .feature-icon {
-            width: 70px;
-            height: 70px;
-            background-color: rgba(26, 115, 232, 0.1);
+            width: 90px;
+            height: 90px;
+            background: var(--gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            color: var(--primary-blue);
-            font-size: 1.8rem;
+            margin: 0 auto 25px;
+            color: var(--white);
+            font-size: 2.2rem;
             transition: var(--transition);
+            position: relative;
+            z-index: 1;
         }
 
         .feature-card:hover .feature-icon {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            transform: rotate(10deg);
+            transform: scale(1.1) rotate(5deg);
         }
 
         .feature-card h3 {
             margin-bottom: 15px;
             color: var(--dark-text);
+            font-size: 1.5rem;
         }
 
         .feature-card p {
             color: #666;
+            line-height: 1.8;
         }
 
+        /* Comparison Section */
         .comparison {
-            padding: 80px 0;
+            padding: 100px 0;
             background-color: var(--white);
         }
 
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 30px;
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .comparison-content {
+            padding-right: 30px;
+        }
+
+        .comparison-content h2 {
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .comparison-content p {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .comparison-list {
+            list-style: none;
+        }
+
+        .comparison-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .comparison-list i {
+            color: var(--primary-blue);
+            margin-left: 10px;
+            margin-top: 5px;
+            font-size: 1.2rem;
+        }
+
+        .comparison-chart {
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            padding: 30px;
             box-shadow: var(--shadow);
-            border-radius: 8px;
+        }
+
+        .chart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .chart-item:last-child {
+            border-bottom: none;
+        }
+
+        .chart-label {
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chart-bar {
+            height: 30px;
+            border-radius: 15px;
+            position: relative;
             overflow: hidden;
         }
 
-        .comparison-table th, .comparison-table td {
-            padding: 15px;
-            text-align: center;
-            border: 1px solid #eee;
+        .chart-bar.madarsa {
+            background: var(--gradient);
+            width: 180px;
         }
 
-        .comparison-table th {
-            background-color: var(--primary-blue);
-            color: var(--white);
+        .chart-bar.others {
+            background: #e0e0e0;
+            width: 120px;
+        }
+
+        .chart-value {
             font-weight: 600;
+            color: var(--dark-text);
+            min-width: 40px;
+            text-align: center;
         }
 
-        .comparison-table tr:nth-child(even) {
+        /* Stats Section */
+        .stats {
+            padding: 100px 0;
+            background: var(--gradient);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-card {
+            padding: 30px 20px;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stat-text {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
             background-color: var(--light-bg);
         }
 
-        .comparison-table .check {
-            color: #4CAF50;
-            font-size: 1.2rem;
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .comparison-table .cross {
-            color: #f44336;
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+      .testimonial-card::before {
+    content: "''";  /* استخدام علامتي اقتباس مفردة */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 4rem;
+    color: rgba(26, 115, 232, 0.1);
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+        .testimonial-text {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 15px;
+            color: #999;
+        }
+
+        .author-info h4 {
+            color: var(--dark-text);
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: var(--gradient);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
             font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            background-color: var(--accent-yellow);
+            color: var(--dark-text);
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 30px;
+        }
+
+        .btn-cta:hover {
+            background-color: #e6ac00;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         footer {
             background-color: var(--dark-text);
             color: var(--white);
-            padding: 50px 0 20px;
+            padding: 70px 0 20px;
         }
 
         .footer-content {
@@ -334,7 +587,7 @@
         }
 
         .footer-column h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 20px;
             color: var(--white);
             position: relative;
@@ -344,8 +597,8 @@
         .footer-column h3::after {
             content: "";
             position: absolute;
-            width: 40px;
-            height: 2px;
+            width: 50px;
+            height: 3px;
             background-color: var(--accent-yellow);
             bottom: 0;
             right: 0;
@@ -356,13 +609,20 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
             color: #ddd;
             text-decoration: none;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-left: 8px;
+            font-size: 0.9rem;
         }
 
         .footer-links a:hover {
@@ -372,16 +632,17 @@
 
         .copyright {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             border-top: 1px solid #444;
             color: #aaa;
             font-size: 0.9rem;
         }
 
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -397,6 +658,30 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-content {
+                padding-right: 0;
+                margin-bottom: 40px;
             }
         }
 
@@ -422,16 +707,48 @@
             }
 
             .page-header h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             .page-header p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
-            .comparison-table {
-                display: block;
-                overflow-x: auto;
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-header {
+                padding: 80px 0;
+            }
+            
+            .features, .comparison, .stats, .testimonials, .cta {
+                padding: 70px 0;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-bars {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .chart-bar.madarsa, .chart-bar.others {
+                width: 100%;
+                max-width: 200px;
             }
         }
     </style>
@@ -441,10 +758,10 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <div class="logo">
-                    <img src="https://overwhelming-amber-hybjhttus6.edgeone.app/file_000000007e78720ea80916d3a5162075.png" alt="منصة مدار">
-                    <h1>منصة مدار</h1>
-                </div>
+                <a href="index.html" class="logo" onclick="window.location.reload(); return false;">
+    <img src="https://stormy-copper-pnqtxuzpc3.edgeone.app/Screenshot%202025-11-21%20150858.png" alt="منصة مدار">
+    <h1>منصة مدار</h1>
+</a>
                 <ul class="nav-links">
                     <li><a href="index.html">الرئيسية</a></li>
                     <li><a href="subjects.html">المواد الدراسية</a></li>
@@ -453,8 +770,7 @@
                     <li><a href="support.html">الدعم الفني</a></li>
                 </ul>
                 <div class="auth-buttons">
-                    <button class="btn btn-login" id="loginBtn">تسجيل الدخول</button>
-                    <button class="btn btn-signup" id="signupBtn">إنشاء حساب</button>
+                    
                 </div>
             </nav>
         </div>
@@ -464,8 +780,9 @@
     <section class="page-header">
         <div class="container">
             <div class="page-header-content">
-                <h1>مميزات المنصة</h1>
-                <p>اكتشف ما يميز منصة مدار عن غيرها من المنصات التعليمية</p>
+                <h1>لماذا تختار منصة مدار؟</h1>
+                <p>اكتشف المميزات الفريدة التي تجعل منصة مدار الخيار الأمثل لتعليمك</p>
+                <button class="btn btn-hero">ابدأ رحلتك التعليمية الآن</button>
             </div>
         </div>
     </section>
@@ -476,48 +793,71 @@
             <div class="section-title">
                 <h2>مميزات منصة مدار</h2>
             </div>
+            <p class="section-subtitle">نقدم مجموعة واسعة من المميزات المصممة خصيصاً لتلبية احتياجات الطلاب في العصر الرقمي</p>
+            
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-book"></i>
+                        <i class="fas fa-book-open"></i>
                     </div>
                     <h3>منهج متكامل</h3>
-                    <p>منهج دراسي متكامل يغطي جميع المواد والشعب في المرحلة الثانوية</p>
+                    <p>منهج دراسي متكامل يغطي جميع المواد والشعب في المرحلة الثانوية، مع تحديث مستمر للمحتوى لمواكبة أحدث التطورات التعليمية.</p>
                 </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-chalkboard-teacher"></i>
                     </div>
                     <h3>معلمون متميزون</h3>
-                    <p>فريق من المعلمين المتميزين ذوي الخبرة في التدريس الإلكتروني</p>
+                    <p>فريق من المعلمين المتميزين ذوي الخبرة في التدريس الإلكتروني، معتمدين ومعروفين بكفاءتهم العالية في شرح المناهج.</p>
                 </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>فيديوهات عالية الجودة</h3>
+                    <p>فيديوهات شرح عالية الجودة والدقة، مسجلة في استوديوهات متخصصة مع تقنيات متطورة لضمان تجربة تعليمية مثالية.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>تمارين وتطبيقات</h3>
+                    <p>الآلاف من التمارين التفاعلية والتطبيقات العملية التي تساعد على ترسيخ المعلومة وتطبيقها في مواقف مختلفة.</p>
+                </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3>تقييم مستمر</h3>
-                    <p>نظام تقييم مستمر لمتابعة تقدم الطلاب وتحديد نقاط القوة والضعف</p>
+                    <p>نظام تقييم مستمر لمتابعة تقدم الطلاب وتحديد نقاط القوة والضعف، مع تقارير مفصلة للطلاب وأولياء الأمور.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <h3>منصة تفاعلية</h3>
-                    <p>واجهة مستخدم سهلة وممتعة تجعل عملية التعلم أكثر فعالية</p>
-                </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3>متاحة على جميع الأجهزة</h3>
-                    <p>يمكن الوصول إلى المنصة من أي جهاز كمبيوتر أو جهاز محمول</p>
+                    <h3>منصة متعددة الأجهزة</h3>
+                    <p>يمكن الوصول إلى المنصة من أي جهاز (كمبيوتر، لوحي، هاتف ذكي) مع واجهة مستخدم مخصصة لكل جهاز.</p>
                 </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-headset"></i>
                     </div>
                     <h3>دعم فني متواصل</h3>
-                    <p>فريق دعم فني متاح على مدار الساعة للإجابة على استفساراتكم</p>
+                    <p>فريق دعم فني متاح على مدار الساعة للإجابة على استفساراتكم وحل أي مشكلة تواجهكم أثناء استخدام المنصة.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>بيئة آمنة</h3>
+                    <p>بيئة تعليمية آمنة ومحمية، مع أنظمة حماية متطورة لضمان خصوصية وسلامة بيانات المستخدمين.</p>
                 </div>
             </div>
         </div>
@@ -526,45 +866,163 @@
     <!-- Comparison Section -->
     <section class="comparison">
         <div class="container">
-            <div class="section-title">
-                <h2>لماذا تختار منصة مدار؟</h2>
+            <div class="comparison-container">
+                <div class="comparison-content">
+                    <h2>لماذا منصة مدار تتفوق على غيرها؟</h2>
+                    <p>في عالم يتجه نحو الرقمنة، تقدم منصة مدار تجربة تعليمية فريدة تجمع بين جودة المحتوى وتقنيات التعلم الحديثة.</p>
+                    
+                    <ul class="comparison-list">
+                        <li><i class="fas fa-check-circle"></i> <span>مناهج مصممة خصيصاً للتعلم الإلكتروني</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>تفاعل مباشر مع المعلمين عبر منصات متعددة</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>تقييم فوري للاختبارات والواجبات</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>مكتبة رقمية شاملة للمراجع والمواد الإضافية</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>خطط دراسة مخصصة تناسب كل طالب</span></li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-chart">
+                    <h3 style="text-align: center; margin-bottom: 30px; color: var(--primary-blue);">مقارنة الأداء</h3>
+                    
+                    <div class="chart-item">
+                        <div class="chart-label">جودة المحتوى</div>
+                        <div class="chart-bars">
+                            <div class="chart-bar madarsa"></div>
+                            <div class="chart-value">95%</div>
+                            <div class="chart-bar others"></div>
+                            <div class="chart-value">78%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-item">
+                        <div class="chart-label">تفاعل الطلاب</div>
+                        <div class="chart-bars">
+                            <div class="chart-bar madarsa" style="width: 170px;"></div>
+                            <div class="chart-value">88%</div>
+                            <div class="chart-bar others" style="width: 110px;"></div>
+                            <div class="chart-value">65%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-item">
+                        <div class="chart-label">تقييم الخبراء</div>
+                        <div class="chart-bars">
+                            <div class="chart-bar madarsa" style="width: 190px;"></div>
+                            <div class="chart-value">96%</div>
+                            <div class="chart-bar others" style="width: 130px;"></div>
+                            <div class="chart-value">72%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-item">
+                        <div class="chart-label">رضا المستخدمين</div>
+                        <div class="chart-bars">
+                            <div class="chart-bar madarsa" style="width: 185px;"></div>
+                            <div class="chart-value">94%</div>
+                            <div class="chart-bar others" style="width: 125px;"></div>
+                            <div class="chart-value">70%</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                        <div style="display: flex; align-items: center;">
+                            <div style="width: 15px; height: 15px; background: var(--gradient); border-radius: 50%; margin-left: 8px;"></div>
+                            <span>منصة مدار</span>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <div style="width: 15px; height: 15px; background: #e0e0e0; border-radius: 50%; margin-left: 8px;"></div>
+                            <span>المنصات الأخرى</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>الميزة</th>
-                        <th>منصة مدار</th>
-                        <th>المنصات الأخرى</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>مناهج متكاملة لجميع الشعب</td>
-                        <td><i class="fas fa-check check"></i></td>
-                        <td><i class="fas fa-times cross"></i></td>
-                    </tr>
-                    <tr>
-                        <td>معلمون معتمدون وذوو خبرة</td>
-                        <td><i class="fas fa-check check"></i></td>
-                        <td><i class="fas fa-times cross"></i></td>
-                    </tr>
-                    <tr>
-                        <td>نظام تقييم وتتبع مستمر</td>
-                        <td><i class="fas fa-check check"></i></td>
-                        <td><i class="fas fa-times cross"></i></td>
-                    </tr>
-                    <tr>
-                        <td>دعم فني متواصل 24/7</td>
-                        <td><i class="fas fa-check check"></i></td>
-                        <td><i class="fas fa-times cross"></i></td>
-                    </tr>
-                    <tr>
-                        <td>أسعار تنافسية</td>
-                        <td><i class="fas fa-check check"></i></td>
-                        <td><i class="fas fa-times cross"></i></td>
-                    </tr>
-                </tbody>
-            </table>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">منصة مدار في أرقام</h2>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">15,000+</span>
+                    <div class="stat-text">طالب مسجل</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">200+</span>
+                    <div class="stat-text">معلم متميز</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">75+</span>
+                    <div class="stat-text">مادة دراسية</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">98%</span>
+                    <div class="stat-text">رضا العملاء</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>آراء طلابنا</h2>
+            </div>
+            <p class="section-subtitle">استمع إلى تجارب الطلاب الذين استفادوا من منصة مدار في رحلتهم التعليمية</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">منصة مدار غيرت طريقة تعاملي مع المواد الدراسية تماماً. الشروحات الواضحة والتمارين التفاعلية ساعدتني على فهم المواد الصعبة بسهولة.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>أحمد محمود</h4>
+                            <p>طالب في الصف الثالث الثانوي</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">كنت أعاني من مادة الرياضيات، ولكن بعد الاشتراك في منصة مدار واستماعي لشروحات المعلمين المتميزين، أصبحت من أفضل الطلاب في المادة.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>سارة عبدالله</h4>
+                            <p>طالبة في الصف الثاني الثانوي</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">ما يميز منصة مدار هو المرونة في اختيار وقت الدراسة، والدعم الفني الرائع الذي يقدم المساعدة في أي وقت. أنصح جميع الطلاب بتجربتها.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>محمد السيد</h4>
+                            <p>طالب في الصف الأول الثانوي</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>ابدأ رحلتك التعليمية مع منصة مدار اليوم</h2>
+            <p>انضم إلى آلاف الطلاب الناجحين واستفد من أفضل الخدمات التعليمية الإلكترونية</p>
+            <button class="btn btn-cta">سجل الآن مجاناً</button>
         </div>
     </section>
 
@@ -579,19 +1037,19 @@
                 <div class="footer-column">
                     <h3>روابط سريعة</h3>
                     <ul class="footer-links">
-                        <li><a href="index.html">الرئيسية</a></li>
-                        <li><a href="subjects.html">المواد الدراسية</a></li>
-                        <li><a href="videos.html">فيديوهات الشرح</a></li>
-                        <li><a href="features.html">المميزات</a></li>
+                        <li><a href="index.html"><i class="fas fa-arrow-left"></i> الرئيسية</a></li>
+                        <li><a href="subjects.html"><i class="fas fa-arrow-left"></i> المواد الدراسية</a></li>
+                        <li><a href="videos.html"><i class="fas fa-arrow-left"></i> فيديوهات الشرح</a></li>
+                        <li><a href="features.html"><i class="fas fa-arrow-left"></i> المميزات</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>الدعم الفني</h3>
                     <ul class="footer-links">
-                        <li><a href="support.html">مركز المساعدة</a></li>
-                        <li><a href="support.html">اتصل بنا</a></li>
-                        <li><a href="support.html">الشروط والأحكام</a></li>
-                        <li><a href="support.html">سياسة الخصوصية</a></li>
+                        <li><a href="support.html"><i class="fas fa-arrow-left"></i> مركز المساعدة</a></li>
+                        <li><a href="support.html"><i class="fas fa-arrow-left"></i> اتصل بنا</a></li>
+                        <li><a href="support.html"><i class="fas fa-arrow-left"></i> الشروط والأحكام</a></li>
+                        <li><a href="support.html"><i class="fas fa-arrow-left"></i> سياسة الخصوصية</a></li>
                     </ul>
                 </div>
             </div>
@@ -602,7 +1060,7 @@
     </footer>
 
     <script>
-        // تفعيل الأنيميشن للبطاقات
+        // تفعيل الأنيميشن للعناصر عند التمرير
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.feature-card');
             
@@ -616,6 +1074,35 @@
             
             cards.forEach(card => {
                 observer.observe(card);
+            });
+            
+            // إضافة تأثير النبض للأرقام في قسم الإحصائيات
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'pulse 2s ease-in-out';
+                        setTimeout(() => {
+                            entry.target.style.animation = '';
+                        }, 2000);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            statNumbers.forEach(stat => {
+                statsObserver.observe(stat);
+            });
+            
+            // إضافة تأثيرات النقر على الأزرار
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
             });
         });
     </script>
